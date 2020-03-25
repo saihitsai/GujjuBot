@@ -10,8 +10,6 @@ from telethon import events
 
 from telethon.tl import functions, types
 
-from userbot.utils import admin_cmd
-
 global USER_AFK  # pylint:disable=E0602
 
 global afk_time  # pylint:disable=E0602
@@ -44,7 +42,7 @@ async def set_not_afk(event):
 
                 Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
 
-                "Mera Malik A Gaya Hurray🥳🥳🥳"
+                "Set AFK mode to False"
 
             )
 
@@ -58,7 +56,7 @@ async def set_not_afk(event):
 
                 "for the proper functioning of afk functionality " + \
 
-                "in @UniBorg\n\n `{}`".format(str(e)),
+                "in @xtratgbot\nCheck pinned message for more info.\n\n `{}`".format(str(e)),
 
                 reply_to=event.message.id,
 
@@ -70,7 +68,7 @@ async def set_not_afk(event):
 
         afk_time = None  # pylint:disable=E0602
 
-@borg.on(admin_cmd(pattern=r"afk ?(.*)"))
+@borg.on(events.NewMessage(pattern=r"\.afk ?(.*)", outgoing=True))  # pylint:disable=E0602
 
 async def _(event):
 
@@ -114,11 +112,11 @@ async def _(event):
 
         if reason:
 
-            await event.edit(f"Mera Malik Ja Raha Hai, and Reason is {reason}")
+            await event.edit(f"Set AFK mode to True, and Reason is {reason}")
 
         else:
 
-            await event.edit(f"Mera Malik Ja Raha Hai")
+            await event.edit(f"Set AFK mode to True")
 
         await asyncio.sleep(5)
 
@@ -130,7 +128,7 @@ async def _(event):
 
                 Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
 
-                f"Mera Malik Ja Raha Hai, and Reason is {reason}"
+                f"Set AFK mode to True, and Reason is {reason}"
 
             )
 
@@ -230,9 +228,9 @@ async def on_afk(event):
 
         msg = None
 
-        message_to_reply = f"My Master Has Been Gone For {afk_since}\nWhere He Is: Tereko kyu batau " + \
+        message_to_reply = f"My Master Has Been Gone For {afk_since}\nWhere He Is: ONLY GOD KNOWS " + \
 
-            f"\n\n__ I'll back in a few hours__\n**REASON**: {reason}" \
+            f"\n\n__I promise I'll back in a few hours__\n**REASON**: {reason}" \
 
             if reason \
 
