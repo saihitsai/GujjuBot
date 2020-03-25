@@ -17,6 +17,15 @@ class Var(object):
     HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
     TG_BOT_TOKEN_BF_HER = os.environ.get("TG_BOT_TOKEN_BF_HER", None)
     TG_BOT_USER_NAME_BF_HER = os.environ.get("TG_BOT_USER_NAME_BF_HER", None)
+    #
+    SPOTIFY_USERNAME = os.environ.get("SPOTIFY_USERNAME", None)
+    #
+    SPOTIFY_PASS = os.environ.get("SPOTIFY_PASS", None)
+    #
+    DEFAULT_NAME = os.environ.get("DEFAULT_NAME", None)
+    #
+    SPOTIFY_BIO_PREFIX = os.environ.get("SPOTIFY_BIO_PREFIX", None)
+    #
     DOWNLOAD_PFP_URL_CLOCK = os.environ.get("DOWNLOAD_PFP_URL_CLOCK", None)
     G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
     G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
