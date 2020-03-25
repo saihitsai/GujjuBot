@@ -44,7 +44,7 @@ async def set_not_afk(event):
 
                 Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
 
-                "Mera Malik A Gaya HurrayðŸ¥³ðŸ¥³ðŸ¥³"
+                "⬛⬛⬛⬛⬛⬛⬛\n**User Is Back**\n**Reason:** Online\n⬛⬛⬛⬛⬛⬛⬛"
 
             )
 
@@ -114,11 +114,11 @@ async def _(event):
 
         if reason:
 
-            await event.edit(f"Mera Malik Ja Raha Hai, and Reason is {reason}")
+            await event.edit(f"🟥🟥🟥🟥🟥🟥🟥\n**User Is AFK**\n**Reason:** {reason}\n🟥🟥🟥🟥🟥🟥🟥")
 
         else:
 
-            await event.edit(f"Mera Malik Ja Raha Hai")
+            await event.edit(f"🆘🆘🆘🆘🆘🆘🆘\nI AM OFFLINE RIGHT\nTEXT ME, I WILL CHECK LATER \n🆘🆘🆘🆘🆘🆘🆘")
 
         await asyncio.sleep(5)
 
@@ -130,7 +130,7 @@ async def _(event):
 
                 Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
 
-                f"Mera Malik Ja Raha Hai, and Reason is {reason}"
+                f"🟥🟥🟥🟥🟥🟥🟥\n**User Is AFK**\n**Reason:** {reason}\n🟥🟥🟥🟥🟥🟥🟥"
 
             )
 
