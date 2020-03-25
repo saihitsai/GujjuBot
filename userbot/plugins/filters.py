@@ -10,8 +10,9 @@ import asyncio
 import re
 from telethon import events, utils
 from telethon.tl import types
-from userbot.plugins.sql_helper.filter_sql import get_filter, add_filter, remove_filter, get_all_filters, remove_all_filters
-from userbot.utils import admin_cmd
+from sql_helpers.filters_sql import get_filter, add_filter, remove_filter, get_all_filters, remove_all_filters
+from uniborg.util import admin_cmd
+
 
 DELETE_TIMEOUT = 0
 TYPE_TEXT = 0
@@ -23,7 +24,7 @@ global last_triggered_filters
 last_triggered_filters = {}  # pylint:disable=E0602
 
 
-@command(incoming=True)
+@borg.on(events.NewMessage(incoming=True))
 async def on_snip(event):
     global last_triggered_filters
     name = event.raw_text
@@ -54,8 +55,10 @@ async def on_snip(event):
                 message_id = event.message.id
                 if event.reply_to_msg_id:
                     message_id = event.reply_to_msg_id
-                await event.reply(
+                await borg.send_message(
+                    event.chat_id,
                     snip.reply,
+                    reply_to=message_id,
                     file=media
                 )
                 if event.chat_id not in last_triggered_filters:
@@ -65,7 +68,7 @@ async def on_snip(event):
                 last_triggered_filters[event.chat_id].remove(name)
 
 
-@borg.on(admin_cmd("savefilter(.*)"))
+@borg.on(admin_cmd("savefilter (.*)"))
 async def on_snip_save(event):
     name = event.pattern_match.group(1)
     msg = await event.get_reply_message()
@@ -98,10 +101,10 @@ async def on_snip_list(event):
             OUT_STR += f"👉 {a_snip.keyword} \n"
     else:
         OUT_STR = "No Filters. Start Saving using `.savefilter`"
-    if len(OUT_STR) > 4096:
+    if len(OUT_STR) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(OUT_STR)) as out_file:
             out_file.name = "filters.text"
-            await bot.send_file(
+            await borg.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,
@@ -121,7 +124,7 @@ async def on_snip_delete(event):
     await event.edit(f"filter {name} deleted successfully")
 
 
-@borg.on(admin_cmd("clearallfilters$"))
+@borg.on(admin_cmd("clearallfilters"))
 async def on_all_snip_delete(event):
     remove_all_filters(event.chat_id)
     await event.edit(f"filters **in current chat** deleted successfully")
