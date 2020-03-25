@@ -11,7 +11,7 @@ import re
 from telethon import events, utils
 from telethon.tl import types
 from sql_helper.filters_sql import get_filter, add_filter, remove_filter, get_all_filters, remove_all_filters
-from uniborg.util import admin_cmd
+from sql_helper.util import admin_cmd
 
 
 DELETE_TIMEOUT = 0
